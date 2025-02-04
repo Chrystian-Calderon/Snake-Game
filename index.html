@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        body {background-color: #000;}
+        #canvas {background-color: #fff;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300px" height="300px"></canvas>
+    
+    <script src="js/snake.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const snake = new Snake(150, 150, 20, ctx);
+
+        const gridSize = 20;
+
+        window.addEventListener('keydown', (e) => snake.handleKeyDown(e));
+        window.addEventListener("keyup", (e) => snake.handleKeyUp(e));
+
+        function update() {
+            snake.moving();
+            snake.drawSnake();
+        }
+        
+        function gameLoop() {
+            update();
+            requestAnimationFrame(gameLoop);
+        }
+        // gameLoop();
+    </script>
+</body>
+</html>
