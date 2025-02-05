@@ -10,29 +10,32 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="300px" height="300px"></canvas>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
     
-    <script src="js/snake.js"></script>
-    <script>
+    <script type="module">
+        import { Snake } from './js/snake.js';
+        import { Fruit } from './js/fruit.js';
+
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        const snake = new Snake(150, 150, 20, ctx);
-
-        const gridSize = 20;
+        const fruit = new Fruit(canvas.width, canvas.height);
+        const snake = new Snake(canvas.width, canvas.height);
+        console.log(fruit.x);
 
         window.addEventListener('keydown', (e) => snake.handleKeyDown(e));
-        window.addEventListener("keyup", (e) => snake.handleKeyUp(e));
 
         function update() {
-            snake.moving();
-            snake.drawSnake();
+            fruit.drawFruit(ctx);
+            snake.move(fruit);
+            snake.drawSnake(ctx);
         }
         
         function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             update();
-            requestAnimationFrame(gameLoop);
+            setTimeout(() => requestAnimationFrame(gameLoop), 500);
         }
-        // gameLoop();
+        gameLoop();
     </script>
 </body>
 </html>
