@@ -1,4 +1,4 @@
-class Snake {
+export class Snake {
     constructor(width, height) {
         this.x = width / 2;
         this.y = height / 2;
@@ -18,7 +18,7 @@ class Snake {
         if (keyMap[e.key]) this.direction = keyMap[e.key];
     }
 
-    move() {
+    move(fruit) {
         switch (this.direction) {
             case 'up': this.y -= this.gridSize; break;
             case 'down': this.y += this.gridSize; break;
@@ -28,6 +28,13 @@ class Snake {
 
         this.x = Math.max(0, Math.min(this.width - this.gridSize, this.x));
         this.y = Math.max(0, Math.min(this.height - this.gridSize, this.y));
+
+        if ((this.x === fruit.x + this.gridSize && 
+            this.y === fruit.y + this.gridSize) ||
+            (this.x === (fruit.x + fruit.gridSize) - this.gridSize &&
+            this.y === (fruit.y + fruit.gridSize) - this.gridSize)) {
+            fruit.randomPosition();
+        }
     }
 
     drawSnake(ctx) {
