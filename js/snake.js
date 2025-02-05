@@ -15,7 +15,15 @@ export class Snake {
             "ArrowLeft": "left",
             "ArrowRight": "right"
         };
-        if (keyMap[e.key]) this.direction = keyMap[e.key];
+
+        const oppositeDirection = {
+            "up": "down",
+            "down": "up",
+            "left": "right",
+            "right": "left"
+        };
+
+        if (keyMap[e.key] && keyMap[e.key] !== oppositeDirection[this.direction]) this.direction = keyMap[e.key];
     }
 
     move(fruit) {
