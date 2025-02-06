@@ -6,6 +6,7 @@ export class Snake {
         this.width = width;
         this.height = height;
         this.direction = 'right';
+        this.body = [{x: this.x, y: this.y}];
     }
 
     handleKeyDown(e) {
@@ -34,19 +35,27 @@ export class Snake {
             case 'right': this.x += this.gridSize; break;
         }
 
+        
         this.x = Math.max(0, Math.min(this.width - this.gridSize, this.x));
         this.y = Math.max(0, Math.min(this.height - this.gridSize, this.y));
-
-        if ((this.x === fruit.x + this.gridSize && 
+        
+        if ((this.x === fruit.x + this.gridSize &&
             this.y === fruit.y + this.gridSize) ||
             (this.x === (fruit.x + fruit.gridSize) - this.gridSize &&
             this.y === (fruit.y + fruit.gridSize) - this.gridSize)) {
-            fruit.randomPosition();
+                fruit.randomPosition();
+                this.body.unshift({x: this.x, y: this.y});
         }
+        
+        this.body.unshift({x: this.x, y: this.y});
+        this.body.pop();
     }
 
     drawSnake(ctx) {
         ctx.fillStyle = 'green';
-        ctx.fillRect(this.x, this.y, this.gridSize, this.gridSize);
+        this.body.forEach((part, index) => {
+            console.log(part.x, part.y);
+            ctx.fillRect(part.x, part.y, this.gridSize, this.gridSize);
+        });
     }
 }
