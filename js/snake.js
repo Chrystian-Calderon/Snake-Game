@@ -27,6 +27,24 @@ export class Snake {
         if (keyMap[e.key] && keyMap[e.key] !== oppositeDirection[this.direction]) this.direction = keyMap[e.key];
     }
 
+    collision() {
+        if (this.x === -this.gridSize && this.direction === 'left' ||
+            this.x === this.width && this.direction === 'right' ||
+            this.y === -this.gridSize && this.direction === 'up' ||
+            this.y === this.height && this.direction === 'down'
+        ) return true;
+    }
+
+    eatApple(fruit) {
+        if ((this.x === fruit.x + this.gridSize &&
+            this.y === fruit.y + this.gridSize) ||
+            (this.x === (fruit.x + fruit.gridSize) - this.gridSize &&
+            this.y === (fruit.y + fruit.gridSize) - this.gridSize)) {
+                fruit.randomPosition();
+                this.body.unshift({x: this.x, y: this.y});
+        }
+    }
+
     move(fruit) {
         switch (this.direction) {
             case 'up': this.y -= this.gridSize; break;
@@ -35,26 +53,21 @@ export class Snake {
             case 'right': this.x += this.gridSize; break;
         }
 
+        this.x = Math.max(-this.gridSize, Math.min(this.width, this.x));
+        this.y = Math.max(-this.gridSize, Math.min(this.height, this.y));
+
+        this.eatApple(fruit);
         
-        this.x = Math.max(0, Math.min(this.width - this.gridSize, this.x));
-        this.y = Math.max(0, Math.min(this.height - this.gridSize, this.y));
-        
-        if ((this.x === fruit.x + this.gridSize &&
-            this.y === fruit.y + this.gridSize) ||
-            (this.x === (fruit.x + fruit.gridSize) - this.gridSize &&
-            this.y === (fruit.y + fruit.gridSize) - this.gridSize)) {
-                fruit.randomPosition();
-                this.body.unshift({x: this.x, y: this.y});
+        if (!this.collision()) {
+            this.body.unshift({x: this.x, y: this.y});
+            this.body.pop();
         }
-        
-        this.body.unshift({x: this.x, y: this.y});
-        this.body.pop();
+        return this.collision();
     }
 
     drawSnake(ctx) {
         ctx.fillStyle = 'green';
         this.body.forEach((part, index) => {
-            console.log(part.x, part.y);
             ctx.fillRect(part.x, part.y, this.gridSize, this.gridSize);
         });
     }

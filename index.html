@@ -20,21 +20,29 @@
         const ctx = canvas.getContext('2d');
         const fruit = new Fruit(canvas.width, canvas.height);
         const snake = new Snake(canvas.width, canvas.height);
-        console.log(fruit.x);
+        let isGameOver = false;
+        let timeout;
 
         window.addEventListener('keydown', (e) => snake.handleKeyDown(e));
 
         function update() {
             fruit.drawFruit(ctx);
-            snake.move(fruit);
+            if (snake.move(fruit)) {
+                clearTimeout(timeout);
+                alert('Game Over!');
+                isGameOver = true;
+            };
+            // snake.move(fruit);
             snake.drawSnake(ctx);
         }
         
         function gameLoop() {
+            if (isGameOver) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             update();
-            setTimeout(() => requestAnimationFrame(gameLoop), 500);
+            timeout = setTimeout(() => requestAnimationFrame(gameLoop), 500);
         }
+
         gameLoop();
     </script>
 </body>
