@@ -32,14 +32,19 @@ export class Snake {
             this.x === this.width && this.direction === 'right' ||
             this.y === -this.gridSize && this.direction === 'up' ||
             this.y === this.height && this.direction === 'down'
-        ) return true;
+        ) {
+            return true;
+        } else {
+            let head = this.body[0];
+            return this.body.some((part, index) => {
+                if (index >= 4 && head.x === part.x && head.y === part.y) return true;
+            });
+        }
+        
     }
 
     eatApple(fruit) {
-        if ((this.x === fruit.x + this.gridSize &&
-            this.y === fruit.y + this.gridSize) ||
-            (this.x === (fruit.x + fruit.gridSize) - this.gridSize &&
-            this.y === (fruit.y + fruit.gridSize) - this.gridSize)) {
+        if (this.x === fruit.x && this.y === fruit.y) {
                 fruit.randomPosition();
                 this.body.unshift({x: this.x, y: this.y});
         }
