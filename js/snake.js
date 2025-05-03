@@ -45,7 +45,7 @@ export class Snake {
 
     eatApple(fruit) {
         if (this.x === fruit.x && this.y === fruit.y) {
-                fruit.randomPosition();
+                fruit.randomPosition(this.body);
                 this.body.unshift({x: this.x, y: this.y});
         }
     }
