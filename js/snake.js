@@ -43,14 +43,15 @@ export class Snake {
         
     }
 
-    eatApple(fruit) {
+    eatApple(fruit, updateScore) {
         if (this.x === fruit.x && this.y === fruit.y) {
-                fruit.randomPosition(this.body);
-                this.body.unshift({x: this.x, y: this.y});
+            fruit.randomPosition(this.body, updateScore);
+            this.body.unshift({x: this.x, y: this.y});
+            updateScore();
         }
     }
 
-    move(fruit) {
+    move(fruit, updateScore) {
         switch (this.direction) {
             case 'up': this.y -= this.gridSize; break;
             case 'down': this.y += this.gridSize; break;
@@ -61,7 +62,7 @@ export class Snake {
         this.x = Math.max(-this.gridSize, Math.min(this.width, this.x));
         this.y = Math.max(-this.gridSize, Math.min(this.height, this.y));
 
-        this.eatApple(fruit);
+        this.eatApple(fruit, updateScore);
         
         if (!this.collision()) {
             this.body.unshift({x: this.x, y: this.y});
