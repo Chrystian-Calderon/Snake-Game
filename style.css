@@ -1,0 +1,22 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+    padding: 80px;
+    background-color: #f0f0f0;
+}
+
+.container > h1 {grid-column: span 2;}
+
+.container > .game {background-color: black;}
+.container > .game > canvas {background-color: white;}
+
+.container > .info .buttons {display: flex; flex-direction: column; gap: 20px;}
+.container > .info .buttons > button {
+    padding: 8px;
+    border: 1px solid #0152e9;
+    border-radius: 7px;
+    background-color: #0152e9;
+    color: white;
+}
