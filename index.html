@@ -4,46 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
-    <style>
-        body {background-color: #000;}
-        #canvas {background-color: #fff;}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <div class="container">
+        <h1>Snake Game</h1>
+        <div class="game">
+            <canvas id="canvas" width="400px" height="400px"></canvas>
+            <div id="message"></div>
+        </div>
+        <div class="info">
+            <div class="score">
+                <h2>Puntaje: <span id="score">0</span></h2>
+            </div>
+            <div class="buttons">
+                <button id="start">Iniciar</button>
+                <button id="pause">Pausar</button>
+                <button id="resume">Reanudar</button>
+                <button id="restart">Reiniciar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal"></div>
     
-    <script type="module">
-        import { Snake } from './js/snake.js';
-        import { Fruit } from './js/fruit.js';
-
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        const fruit = new Fruit(canvas.width, canvas.height);
-        const snake = new Snake(canvas.width, canvas.height);
-        let isGameOver = false;
-        let timeout;
-
-        window.addEventListener('keydown', (e) => snake.handleKeyDown(e));
-
-        function update() {
-            fruit.drawFruit(ctx);
-            if (snake.move(fruit)) {
-                clearTimeout(timeout);
-                alert('Game Over!');
-                isGameOver = true;
-            };
-            // snake.move(fruit);
-            snake.drawSnake(ctx);
-        }
-        
-        function gameLoop() {
-            if (isGameOver) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            update();
-            timeout = setTimeout(() => requestAnimationFrame(gameLoop), 500);
-        }
-
-        gameLoop();
-    </script>
+    <script type="module" src="./js/script.js"></script>
+    <script type="module" src="./js/buttons.js"></script>
 </body>
 </html>
