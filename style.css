@@ -114,7 +114,8 @@ header .scores>div span#high-score {
 }
 
 .game #message h2,
-.game #message p {
+.game #message p,
+.game #message span {
     color: white;
 }
 
