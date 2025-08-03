@@ -1,19 +1,91 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+h1 {
+    font-size: 1.5rem;
+    line-height: calc(2 / 1.5);
+}
+
+.btn {
+    padding: 15px 10px;
+    border: 1px solid black;
+    border-radius: 7px;
+    background-color: transparent;
+}
+
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     justify-items: center;
     padding: 80px;
     background-color: #f0f0f0;
 }
 
-.container > h1 {grid-column: span 2;}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.container > .game {background-color: black;}
-.container > .game > canvas {background-color: white;}
+header .scores {
+    display: flex;
+    gap: 20px;
+}
 
-.container > .info .buttons {display: flex; flex-direction: column; gap: 20px;}
-.container > .info .buttons > button {
+header .scores>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header .scores>div h3 {
+    font-size: 0.875rem;
+    line-height: calc(1.25 / 0.875);
+    color: gray;
+}
+
+header .scores>div span {
+    font-size: 1.25rem;
+    line-height: calc(1.75 / 1.25);
+}
+
+header .scores>div span#score {
+    color: green;
+}
+
+header .scores>div span#high-score {
+    color: blue;
+}
+
+.container>h1 {
+    grid-column: span 2;
+}
+
+.container>.game {
+    background-color: black;
+}
+
+.container>.game>canvas {
+    background-color: white;
+}
+
+.container>.info .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container>.info .buttons>button {
     padding: 8px;
     border: 1px solid #0152e9;
     border-radius: 7px;
