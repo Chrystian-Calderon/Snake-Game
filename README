@@ -1,8 +1,10 @@
 Snake is a classic game, which I learned to develop my logic to make the game without the artificial intelligence doing it. As I said, it's to improve my logic to do it. I'm doing this project using basic technologies.
 
-imagen
+![Game Image](game-image.png)
 
 The game has scores and buttons for the game.
 
-nota:
 I also used sprites for the fruit and the snake, the complicated thing for me was integrating the snake sprites because there is only one and I was lazy to separate them.
+
+<img src="./sprites/snake.png" alt="Sprites of snake" width="200" height="200">
+<img src="./sprites/apple.png" alt="Sprite of fruit" width="200" height="200">
