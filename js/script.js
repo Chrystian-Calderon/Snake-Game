@@ -81,6 +81,8 @@ document.getElementById("restart").addEventListener("click", () => {
     score = 0;
     document.getElementById("message").style.display = "none";
     document.getElementById("pause").style.display = "block";
+    document.querySelector("#message #resume").style.display = "none";
+    document.querySelector(".controls #resume").style.display = "none";
     boxScore.innerHTML = score;
     loop();
 });
@@ -121,6 +123,8 @@ resumeButtons.forEach(button => {
         document.getElementById("message").style.display = "none";
         document.querySelector(".controls #resume").style.display = "none";
         document.getElementById("pause").style.display = "block";
+        document.querySelector("#message #resume").style.display = "none";
+        document.querySelector(".controls #resume").style.display = "none";
         isPaused = false;
     });
 });
