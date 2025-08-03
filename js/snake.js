@@ -9,7 +9,7 @@ export class Snake {
         this.body = [{ x: this.x, y: this.y }, { x: this.x - this.gridSize, y: this.y }];
         this.positionCordsCurved = [];
         this.image = new Image();
-        this.image.src = '../sprites/snake.png';
+        this.image.src = './sprites/snake.png';
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;

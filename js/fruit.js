@@ -6,7 +6,7 @@ export class Fruit {
         this.x = Math.floor(Math.random() * width / this.gridSize) * this.gridSize;
         this.y = Math.floor(Math.random() * height / this.gridSize) * this.gridSize;
         this.image = new Image();
-        this.image.src = '../sprites/apple.png';
+        this.image.src = './sprites/apple.png';
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;
