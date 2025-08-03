@@ -8,15 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Snake Game</h1>
+        <header>
+            <h1>Snake Game</h1>
+            <div class="scores">
+                <div class="score">
+                    <h3>Score</h3>
+                    <span id="score">0</span>
+                </div>
+                <div class="high-score">
+                    <h3>High Score</h3>
+                    <span id="high-score">0</span>
+                </div>
+            </div>
+        </header>
         <div class="game">
             <canvas id="canvas" width="400px" height="400px"></canvas>
             <div id="message"></div>
         </div>
         <div class="info">
-            <div class="score">
-                <h2>Puntaje: <span id="score">0</span></h2>
-            </div>
             <div class="buttons">
                 <button id="start">Iniciar</button>
                 <button id="pause">Pausar</button>
