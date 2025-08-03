@@ -25,18 +25,17 @@
         <div class="game">
             <canvas id="canvas" width="400px" height="400px"></canvas>
             <div id="message">
-                <h2>¿Listo para jugar?</h2>
-                <span ></span>
-                <p>Presiona el botón "Iniciar" para comenzar a jugar.</p>
+                <h2 id="message-title">¿Listo para jugar?</h2>
+                <span id="result-score"></span>
+                <p id="message-text">Presiona el botón "Iniciar" para comenzar a jugar.</p>
                 <button id="start"><i class="bi bi-play"></i>Iniciar</button>
+                <button id="resume" style="display: none;"><i class="bi bi-play"></i>Reanudar</button>
             </div>
         </div>
         <div class="info">
             <div class="controls">
                 <button id="start"><i class="bi bi-play"></i>Iniciar</button>
                 <button id="resume"><i class="bi bi-play"></i>Reanudar</button>
-            </div>
-            <div class="controls">
                 <button id="pause"><i class="bi bi-pause"></i>Pausar</button>
                 <button id="restart"><i class="bi bi-arrow-clockwise"></i>Reiniciar</button>
             </div>
@@ -45,6 +44,5 @@
     <div id="modal"></div>
     
     <script type="module" src="./js/script.js"></script>
-    <script type="module" src="./js/buttons.js"></script>
 </body>
 </html>
